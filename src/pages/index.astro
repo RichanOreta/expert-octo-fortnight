@@ -1,0 +1,147 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menu</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+            integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg=="
+            crossorigin="anonymous"
+            referrerPolicy="no-referrer"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+            referrerPolicy="no-referrer"
+        />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Lato);
+
+            @keyframes bg-pan {
+                0% {
+                    background-position: 0% 65%;
+                }
+                50% {
+                    background-position: 100% 36%;
+                }
+                100% {
+                    background-position: 0% 65%;
+                }
+            }
+
+            body {
+                font-family: Lato;
+                margin: 0;
+                padding: 0;
+                /* background-color: #212121; */
+                overflow-x: hidden;
+                /* background: linear-gradient(
+                    135deg,
+                    rgba(131, 96, 195, 1) 0%,
+                    rgba(131, 96, 195, 1) 23%,
+                    rgba(236, 47, 75, 1) 80%,
+                    rgba(236, 47, 75, 1) 100%
+                ); */
+                background: linear-gradient(
+                    135deg,
+                    rgba(131, 96, 195, 1),
+                    rgba(242, 113, 33, 1),
+                    rgba(236, 47, 75, 1),
+                    rgba(131, 96, 195, 1)
+                );
+                /* background: linear-gradient(135deg, #8360c3, #f27121, #ec2f4b); */
+
+                /* background: linear-gradient(
+                    to right,
+                    rgb(98, 0, 234),
+                    rgb(236, 64, 122),
+                    rgb(98, 0, 234)
+                ); */
+                background-size: 200%;
+
+                animation: bg-pan 25s infinite;
+            }
+
+            #menu {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                /* justify-content: center; */
+            }
+
+            #menu-items {
+                margin-left: 10rem;
+            }
+
+            #menu-items:hover > .menu-item {
+                opacity: 0.3;
+                scale: 1;
+            }
+
+            #menu-items:hover > .menu-item:hover {
+                opacity: 1;
+                scale: 1.1;
+            }
+
+            .menu-item {
+                color: white;
+                font-size: 50px;
+                text-decoration: none;
+
+                display: block;
+                padding: 20px;
+                transition: opacity 400ms ease, scale 200ms;
+            }
+
+            .hvr-underline-from-left {
+                display: block;
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+
+            .hvr-underline-from-left:focus:before,
+            .hvr-underline-from-left:before {
+                background: #5433ff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="menu">
+            <div id="menu-items">
+                <a href="/q1" class="menu-item hvr-underline-from-left"
+                    >1st Quarter</a
+                >
+                <a href="/q2" class="menu-item hvr-underline-from-left"
+                    >2nd Quarter</a
+                >
+            </div>
+        </div>
+
+        <script>
+            const menuItems = document.querySelectorAll(".menu-item");
+            let ms = 0;
+
+            menuItems.forEach((item) => {
+                item.classList.add("animate__animated", "animate__backInLeft");
+                item.style.setProperty("animation-delay", ms + "ms");
+
+                item.addEventListener("animationend", () => {
+                    item.classList.remove("animate__backInLeft");
+                });
+
+                // item.addEventListener("click", () => {
+                //     menuItems.forEach((item) => {
+                //         item.classList.add("animate__backOutRight");
+                //     });
+                // });
+
+                ms = ms + 200;
+            });
+        </script>
+    </body>
+</html>
